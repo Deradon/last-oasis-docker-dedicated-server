@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+underscore=$(tput smul)
+
+cat <<EOF
+Prepare and run a Last Oasis dedicated server
+
+${bold}USAGE
+  ${normal}last-oasis <options> [command]
+
+${bold}OPTIONS
+  ${normal}The following options are available:
+
+  -d          Directory to use/install Last Oasis from/to
+  -h          Show this help screen
+  -i <IP>     External IP
+  -n <name>   Server name / identifier
+  -p <port>   Port to use
+  -s <slots>  Server slots
+  -u <user>   Steam username / login
+
+${bold}COMMANDS
+  ${normal}The following commands are available:
+
+  help        Show this help screen
+  login       Login to steam. Requires PW and 2FA-Code when when runnig first time
+  install     Download and install Last Oasis
+  update      Update Last Oasis
+  run         Run and start a server in foreground
+
+${bold}ENVIRONMENT VARIABLES: (@todo)
+  ${normal}A lot of internals can be controlled with specific environment variables.
+
+  The following environment variables are available:
+
+    ${underscore}INSTALL_DIR${normal}             (overwritten by '-i' option) [optional]
+      Directory where to install Last Oasis. (Default: ".steam/last-oasis")
+
+    ${underscore}SERVER_BINARY_PATH${normal}      [optional]
+      Path of linux server binary.
+
+    ${underscore}SERVER_CUSTOMER_KEY${normal}     ${bold}[*required]${normal}
+      Get it from https://myrealm.lastoasis.gg/Settings ("Game server registration key")
+
+    ${underscore}SERVER_IDENTIFIER${normal}       (overwritten by '-n' option) ${bold}[*required]${normal}
+      Server name to use. Must be unique per server realm.
+
+    ${underscore}SERVER_IP_ADDRESS${normal}       (overwritten by '-i' option) ${bold}[*required]${normal}
+      Eternal server ip to use.
+
+    ${underscore}SERVER_OPTIONS${normal}          (overwritten by '-o' option) [optional]
+      Additional server options to use.
+      (Default: '-log -force_steamclient_link -messaging -NoLiveServer -EnableCheats -backendapiurloverride="backend.last-oasis.com"')
+
+    ${underscore}SERVER_PORT${normal}             (overwritten by '-p' option) ${bold}[*required]${normal}
+      Server port to use. Must be unique per server realm and IP.
+
+    ${underscore}SERVER_PROVIDER_KEY${normal}     ${bold}[*required]${normal}
+      Get it from https://myrealm.lastoasis.gg/Settings ("Self hosted game servers registration keys")
+
+    ${underscore}SERVER_SLOTS${normal}            [optional]
+      How many slots the server should offer. (Default: "10")
+
+    ${underscore}STEAM_APP_ID${normal}            ${bold}[*required]${normal}
+      SteamApp to install when running install command.
+      (Default: '920720')
+
+    ${underscore}STEAM_CMD_BINARY${normal}        [optional]
+      If you've compiled "stemcmd' from source or it is not included in your ${bold}PATH${normal}, you might need to set this to the full path of your "steamcmd" binary (or shell script).
+      (Default: 'steamcmd')
+
+    ${underscore}STEAM_LINUX_APP_ID${normal}      [optional]
+      Dedicated last oasis server steam appid for linux. (Default: "903950")
+
+    ${underscore}STEAM_USER${normal}              (overwritten by '-u' option) ${bold}[*required]${normal}
+      Steam user name to login with.
+
+${bold}EXAMPLES
+  ${normal}# Login as steam user "bob"
+  last-oasis -u bob login
+
+  # Run a server with given port and external IP
+  last-oasis -d ~/foo/bar/baz install
+
+  # Run a server with given port and external IP
+  last-oasis -p 62001 -i 233.252.0.98 run
+
+${bold}NOTE
+  ${normal}Configuration of your realm and oasis must be done at: https://myrealm.lastoasis.gg/.
+
+${bold}AUTHORS
+  ${normal}Patrick Helm is the main author.
+  The whole list of contributors can be found at: https://github.com/deradon/last-oasis-docker-dedicated-server.
+
+${bold}HELP
+  ${normal}For additional help please see: https://github.com/deradon/last-oasis-docker-dedicated-server
+EOF

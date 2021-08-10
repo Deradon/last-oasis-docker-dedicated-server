@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+source "$CURRENT_DIR/defaults"
+source "$CURRENT_DIR/utils"
+
+show_help() {
+  source "$CURRENT_DIR/help"
+}
+
+while getopts ":c:d:h:i:k:n:o:p:s:u" option; do
+  case $option in
+    c)
+      SERVER_CUSTOMER_KEY=${OPTARG};;
+    d)
+      INSTALL_DIR=${OPTARG};;
+    h)
+      show_help
+      exit;;
+    i)
+      SERVER_IP_ADDRESS=${OPTARG};;
+    k)
+      SERVER_CUSTOMER_KEY=${OPTARG};;
+    n)
+      SERVER_IDENTIFIER=${OPTARG};;
+    o)
+      SERVER_OPTIONS=${OPTARG};;
+    p)
+      SERVER_PORT=${OPTARG};;
+    s)
+      SERVER_SLOTS=${OPTARG};;
+    u)
+      STEAM_USER=${OPTARG};;
+    \?) # Invalid option
+      echo "[ERROR] Invalid option: ${OPTARG}"
+      echo ""
+      show_help
+      exit;;
+  esac
+done
+
+shift $(($OPTIND - 1))
+CMD=$1
+
+case $CMD in
+  login)
+    INFO="LOGIN"
+    login
+    ;;
+  install)
+    INFO="INSTALL"
+    download
+    provide_linux_app_id
+    ;;
+  update)
+    INFO="UPDATE"
+    download
+    ;;
+  run)
+    INFO="RUN"
+    start_server
+    ;;
+  help)
+    show_help
+    ;;
+  *)
+    show_help
+    ;;
+esac

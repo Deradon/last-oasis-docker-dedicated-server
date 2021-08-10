@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+login(){
+  run "$STEAM_CMD_BINARY +login $STEAM_USER +quit"
+}
+
+# Download and setup Last Oasis
+download(){
+  info "Download Last Oasis"
+
+  run "$STEAM_CMD_BINARY \
+    +login $STEAM_USER \
+    +force_install_dir $INSTALL_DIR \
+    +app_update $STEAM_APP_ID validate \
+    +quit"
+}
+
+# Provide correct steam app id to use for linux
+provide_linux_app_id(){
+  info "Provide linux app id"
+
+  run "echo $STEAM_LINUX_APP_ID > ${SERVER_BINARY_PATH}steam_appid.txt"
+}
+
+# Start a single server
+start_server(){
+  run "${SERVER_BINARY_PATH}MistServer-Linux-Shipping \
+    -log \
+    -force_steamclient_link \
+    -messaging \
+    -NoLiveServer \
+    -EnableCheats \
+    -backendapiurloverride="backend.last-oasis.com" \
+    -identifier=$SERVER_IDENTIFIER \
+    -port=$SERVER_PORT \
+    -CustomerKey=$SERVER_CUSTOMER_KEY \
+    -ProviderKey=$SERVER_PROVIDER_KEY \
+    -slots=$SERVER_SLOTS \
+    -OverrideConnectionAddress=$SERVER_IP_ADDRESS"
+}
+
+# Show formatted info
+info(){
+  echo "[$INFO] $1"
+}
+
+# Print and run given command
+run(){
+  echo "> $1"
+  eval $1
+}

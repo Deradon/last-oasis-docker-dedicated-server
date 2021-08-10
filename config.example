@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+##############
+## Required ##
+##############
+
+# Get it from https://myrealm.lastoasis.gg/Settings ("Game server registration key")
+# SERVER_CUSTOMER_KEY="<your-key>"
+
+# Server name to use. Must be unique per server realm.
+# SERVER_IDENTIFIER="MyLastOasisServer"
+
+# Eternal server ip to use.
+# SERVER_IP_ADDRESS="<your-external-ip>"
+
+# Server port to use. Must be unique per server realm and IP.
+# SERVER_PORT="62001"
+
+# Get it from https://myrealm.lastoasis.gg/Settings ("Self hosted game servers registration keys")
+# SERVER_PROVIDER_KEY="<your-key>"
+
+# Steam user name to login with.
+# STEAM_USER="<your-steam-user-name>""
+
+##############
+## Optional ##
+##############
+
+# Directory where to install Last Oasis. (Default: ".steam/last-oasis")
+# INSTALL_DIR=".steam/last-oasis"
+
+# Additional server options to use.
+# SERVER_OPTIONS='-log -force_steamclient_link -messaging -NoLiveServer -EnableCheats -backendapiurloverride="backend.last-oasis.com"'
+
+# How many slots the server should offer. (Default: "10")
+# SERVER_SLOTS="10"
+
+# Steam app to install.
+# STEAM_APP_ID="920720"
+
+# If you've compiled "stemcmd' from source or it is not included in your ${bold}PATH${normal}, you might need to set this to the full path of your "steamcmd" binary (or shell script).
+# For provided Dockerfile use:
+# STEAM_CMD_BINARY=$(realpath steamcmd.sh)
+
+# Dedicated last oasis server steam appid for linux. (Default: "903950")
+# STEAM_LINUX_APP_ID="903950"
+
