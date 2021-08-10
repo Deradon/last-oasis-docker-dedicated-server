@@ -195,6 +195,8 @@ anonymously.
 
 ### Docker Compose
 
+**WARNING** Experimental!
+
 * Requirements: [Install Docker Compose](https://docs.docker.com/compose/install/)
 
 #### Configure
@@ -204,6 +206,102 @@ Copy the example `docker-copose` file and adjust it to your needs:
 ```shell
 # Get repo (@see Installation)
 cp docker-compose.yml.example docker-compose.yml
+```
+
+**NOTE** Do NOT copy the `config.example` as this would overwrite your individual server configuration!
+
+It should look close to:
+
+<details>
+  <summary>Example config</summary>
+
+    version: '3.8'
+
+    x-service-template: &service-template
+      build: .
+      restart: always
+      command: run
+      volumes:
+        - "last-oasis-volume:/mnt/steam/"
+
+    x-environment-template: &environment-template
+      SERVER_CUSTOMER_KEY: XgZyB0HDYtv4JJ1tUUybXg
+      SERVER_PROVIDER_KEY: 6fSIs5nTwnhfjcaVlZ5BmA
+      SERVER_IP_ADDRESS: 233.252.0.98
+      SERVER_SLOTS: 25
+      STEAM_USER: FancyAlice
+
+    services:
+      # @note Don't remove this service. The `maintenance` service is used
+      #       for installing and updating.
+      maintenance:
+        <<: *service-template
+        restart: never
+        command: help
+        environment:
+          <<: *environment-template
+
+
+      server-01:
+        <<: *service-template
+        environment:
+          <<: *environment-template
+          SERVER_IDENTIFIER: server-01
+          SERVER_PORT: 62001
+
+      server-02:
+        <<: *service-template
+        environment:
+          <<: *environment-template
+          SERVER_IDENTIFIER: server-02
+          SERVER_PORT: 62002
+
+      server-03:
+        <<: *service-template
+        environment:
+          <<: *environment-template
+          SERVER_IDENTIFIER: server-03
+          SERVER_PORT: 62003
+
+    volumes:
+      last-oasis-volume:
+</details>
+
+#### Install
+
+When using the tool for the first time, steam ask you to login
+and provide the 2FA code. That's because the Last Oasis server can not yet be downloaded
+anonymously.
+
+**IMPORTANT:** Whenever an unknown tool ask you for your password, check the source! Fight scamming and phishing!
+
+```shell
+./last-oasis-compose login
+./last-oasis-compose install
+```
+
+#### Start all servers
+
+```shell
+./last-oasis-compose up
+```
+
+#### Update
+
+```shell
+./last-oasis-compose update
+```
+
+#### Stop all servers
+
+```shell
+./last-oasis-compose down
+```
+
+#### Help
+
+```shell
+./last-oasis-compose help
 ```
 
 ---

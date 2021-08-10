@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+source "$CURRENT_DIR/defaults"
+source "$CURRENT_DIR/utils"
+
+source "$CURRENT_DIR/last-oasis-docker/defaults"
+source "$CURRENT_DIR/last-oasis-docker/utils"
+
+show_help() {
+  source "$CURRENT_DIR/last-oasis-docker/compose-help"
+}
+
+while getopts ":h:i:v" option; do
+  case $option in
+    i)
+      DOCKER_IMAGE=${OPTARG};;
+    h)
+      show_help
+      exit;;
+    v)
+      DOCKER_VOLUME=${OPTARG};;
+    \?) # Invalid option
+      echo "[ERROR] Invalid option: ${OPTARG}"
+      echo ""
+      show_help
+      exit;;
+  esac
+done
+
+shift $(($OPTIND - 1))
+CMD=$1
+
+case $CMD in
+  build)
+    INFO="build"
+    docker_compose "build"
+    ;;
+  login)
+    INFO="LOGIN"
+    docker_compose_maintenance "login"
+    ;;
+  install)
+    INFO="INSTALL"
+    docker_compose "build"
+    docker_compose_maintenance "install"
+    ;;
+  update)
+    docker_compose "down"
+    docker_compose "build"
+    docker_compose_maintenance "update"
+    ;;
+  up)
+    INFO="UP"
+    docker_compose "up --detached"
+    ;;
+  down)
+    INFO="DOWN"
+    docker_compose "down"
+    ;;
+  help)
+    show_help
+    ;;
+  *)
+    show_help
+    ;;
+esac

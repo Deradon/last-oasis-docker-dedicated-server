@@ -3,7 +3,7 @@ version: '3.8'
 x-service-template: &service-template
   build: .
   restart: always
-  command: help
+  command: run
   volumes:
     - "last-oasis-volume:/mnt/steam/"
 
