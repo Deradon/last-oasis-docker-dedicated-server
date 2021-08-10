@@ -22,6 +22,9 @@ services:
   #   command: run
   #   volumes:
   #     - "last-oasis-volume:/mnt/steam/"
+  #   ports:
+  #     - "62000:62000"
+  #     - "62000:62000/udp"
   #   environment:
   #     SERVER_CUSTOMER_KEY: nkOQrfNeXAn2ObOC
   #     SERVER_IDENTIFIER: example-server
@@ -42,6 +45,9 @@ services:
 
   server-01:
     <<: *service-template
+    ports:
+      - "62001:62001"
+      - "62001:62001/udp"
     environment:
       <<: *environment-template
       SERVER_IDENTIFIER: server-01
@@ -49,6 +55,9 @@ services:
 
   server-02:
     <<: *service-template
+    ports:
+      - "62002:62002"
+      - "62002:62002/udp"
     environment:
       <<: *environment-template
       SERVER_IDENTIFIER: server-02
@@ -56,6 +65,9 @@ services:
 
   server-03:
     <<: *service-template
+    ports:
+      - "62003:62003"
+      - "62003:62003/udp"
     environment:
       <<: *environment-template
       SERVER_IDENTIFIER: server-03

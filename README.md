@@ -244,6 +244,9 @@ It should look close to:
 
       server-01:
         <<: *service-template
+        ports:
+          - "62001:62001"
+          - "62001:62001/udp"
         environment:
           <<: *environment-template
           SERVER_IDENTIFIER: server-01
@@ -251,6 +254,9 @@ It should look close to:
 
       server-02:
         <<: *service-template
+        ports:
+          - "62002:62002"
+          - "62002:62002/udp"
         environment:
           <<: *environment-template
           SERVER_IDENTIFIER: server-02
@@ -258,6 +264,9 @@ It should look close to:
 
       server-03:
         <<: *service-template
+        ports:
+          - "62003:62003"
+          - "62003:62003/udp"
         environment:
           <<: *environment-template
           SERVER_IDENTIFIER: server-03
