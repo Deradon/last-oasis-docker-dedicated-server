@@ -9,5 +9,10 @@ SERVER_OPTIONS="${SERVER_OPTIONS:--log -force_steamclient_link -messaging -NoLiv
 SERVER_SLOTS="${SERVER_SLOTS:-10}"
 
 STEAM_APP_ID="${STEAM_APP_ID:-920720}"
-STEAM_CMD_BINARY="${STEAM_CMD_BINARY:-steamcmdd}"
 STEAM_LINUX_APP_ID="${STEAM_LINUX_APP_ID:-903950}"
+
+if [ -n "$IN_DOCKER" ]; then
+  STEAM_CMD_BINARY="${STEAM_CMD_BINARY:-$(realpath ./steamcmd.sh)}"
+else
+  STEAM_CMD_BINARY="${STEAM_CMD_BINARY:-steamcmdd}"
+fi
