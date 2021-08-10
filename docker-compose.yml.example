@@ -1,0 +1,56 @@
+version: '3.8'
+
+# x-service-template: &service-template
+#   build: .
+#   restart: always
+#   command: bash -c '/home/steam/start'
+#   volumes:
+#     - "last-oasis-store:/mnt/steam/"
+
+# x-environment-template: &environment-template
+#   MYREALM_GAME_SERVER_REGISTRATION_KEY: nkOQrfNeXAn2ObOC
+#   MYREALM_SELF_HOSTED_GAME_SERVER_REGISTRATION_KEY: lpfreWu4cNSUIPsG
+#   SERVER_CUSTOMER_KEY: nkOQrfNeXAn2ObOC
+#   SERVER_PROVIDER_KEY: lpfreWu4cNSUIPsG
+#   SERVER_IP_ADDRESS: 138.201.125.237
+#   SERVER_SLOTS: 5
+
+services:
+  example-server:
+    build: .
+    restart: always
+    command: bash -c '/home/steam/start'
+    volumes:
+      - "last-oasis-store:/mnt/steam/"
+    environment:
+      MYREALM_GAME_SERVER_REGISTRATION_KEY: nkOQrfNeXAn2ObOC
+      MYREALM_SELF_HOSTED_GAME_SERVER_REGISTRATION_KEY: lpfreWu4cNSUIPsG
+      SERVER_CUSTOMER_KEY: nkOQrfNeXAn2ObOC
+      SERVER_PROVIDER_KEY: lpfreWu4cNSUIPsG
+      SERVER_IP_ADDRESS: 138.201.125.237
+      SERVER_SLOTS: 5
+
+  # server-01:
+  #   <<: *service-template
+  #   environment:
+  #     <<: *environment-template
+  #     SERVER_IDENTIFIER: server-01
+  #     SERVER_PORT: 62001
+
+  # server-02:
+  #   <<: *service-template
+  #   environment:
+  #     <<: *environment-template
+  #     SERVER_IDENTIFIER: server-02
+  #     SERVER_PORT: 62002
+
+  # server-03:
+  #   <<: *service-template
+  #   environment:
+  #     <<: *environment-template
+  #     SERVER_IDENTIFIER: server-03
+  #     SERVER_PORT: 62003
+
+volumes:
+  last-oasis-store:
+    external: true

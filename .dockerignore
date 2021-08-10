@@ -1,0 +1,13 @@
+# Blacklist everything by default
+**
+
+# Whitelist allowed files/dirs into dockers build context
+# == Single Files
+!config
+!config.example
+!docker-compose.yml
+!docker-compose.yml.example
+!last-oasis
+
+# == Dirs
+!src/

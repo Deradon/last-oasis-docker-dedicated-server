@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+DOCKER_IMAGE="${DOCKER_IMAGE:-last-oasis}"
+DOCKER_VOLUME="${DOCKER_VOLUME:-last-oasis-volume}"
