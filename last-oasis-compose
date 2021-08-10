@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+CUSTOM_CONFIG_FILE="$CURRENT_DIR/config"
+if test -f "$CUSTOM_CONFIG_FILE"; then
+  echo "[CUSTOM CONFIG] Loading ..."
+  source "$CUSTOM_CONFIG_FILE"
+fi
+
+source "$CURRENT_DIR/src/docker-compose-cli-entry-point"

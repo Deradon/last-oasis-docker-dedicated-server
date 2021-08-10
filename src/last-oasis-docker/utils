@@ -31,3 +31,10 @@ docker_run(){
     $1"
 }
 
+docker_compose_maintenance(){
+  run "docker-compose run maintenance $1"
+}
+
+docker_compose(){
+  run "docker-compose $1"
+}

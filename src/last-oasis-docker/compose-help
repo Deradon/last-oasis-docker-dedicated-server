@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+
+bold=$(tput bold)
+normal=$(tput sgr0)
+underscore=$(tput smul)
+
+cat <<EOF
+Prepare and run a Last Oasis dedicated server with docker-compose
+
+${bold}USAGE
+  ${normal}last-oasis-compose <options> [command]
+
+${bold}OPTIONS
+  ${normal}The following options are available:
+
+  -v          Docker volume name
+  -i <image>  Docker image name
+
+${bold}COMMANDS
+  ${normal}The following commands are available:
+
+  help        Show this help screen
+  login       Login to steam. Requires PW and 2FA-Code when when runnig first time
+  install     Create docker volme, build docker image, download and install last oasis to volume.
+  update      Update Last Oasis
+  debug       Open a shell (bash) within the container
+  run         Run and start a server in foreground
+
+${bold}ENVIRONMENT VARIABLES:
+  ${normal}The following environment variables are available:
+
+    ${underscore}DOCKER_IMAGE${normal}            (overwritten by '-i' option) [optional]
+      Docker image name to use. (Default: "last-oasis")
+
+    ${underscore}DOCKER_VOLUME${normal}           (overwritten by '-v' option) [optional]
+      Docker volume name to use. (Default: "last-oasis-volume")
+
+${bold}EXAMPLES
+  ${normal}# Create docker volme, build docker image, download and install last oasis to volume.
+  last-oasis-compose install
+
+  # Update Last Oasis server
+  last-oasis-compose update
+
+  # Run Last Oasis Server
+  last-oasis-compose run
+
+${bold}NOTE
+  ${normal}Configuration of your realm and oasis must be done at: https://myrealm.lastoasis.gg/.
+
+${bold}AUTHORS
+  ${normal}Patrick Helm is the main author.
+  The whole list of contributors can be found at: https://github.com/deradon/last-oasis-docker-dedicated-server.
+
+${bold}HELP
+  ${normal}For additional help please see: https://github.com/deradon/last-oasis-docker-dedicated-server
+EOF

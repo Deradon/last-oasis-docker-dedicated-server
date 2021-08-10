@@ -206,6 +206,14 @@ Copy the example `docker-copose` file and adjust it to your needs:
 cp docker-compose.yml.example docker-compose.yml
 ```
 
+#### Install
+
+* Coming soon
+
+#### Run
+
+* Coming soon
+
 ---
 
 ## Contributing
