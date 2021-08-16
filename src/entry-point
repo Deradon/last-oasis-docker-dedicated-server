@@ -9,7 +9,7 @@ show_help() {
   source "$CURRENT_DIR/help"
 }
 
-while getopts ":c:d:h:i:k:n:o:p:s:u" option; do
+while getopts ":c:d:h:i:k:n:o:p:q:s:u" option; do
   case $option in
     c)
       SERVER_CUSTOMER_KEY=${OPTARG};;
@@ -28,6 +28,8 @@ while getopts ":c:d:h:i:k:n:o:p:s:u" option; do
       SERVER_OPTIONS=${OPTARG};;
     p)
       SERVER_PORT=${OPTARG};;
+    q)
+      SERVER_QUERY_PORT=${OPTARG};;
     s)
       SERVER_SLOTS=${OPTARG};;
     u)

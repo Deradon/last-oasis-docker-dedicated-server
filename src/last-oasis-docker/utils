@@ -10,6 +10,10 @@ docker_build_image(){
 
 docker_debug(){
   run "docker run \
+    --publish $SERVER_PORT:$SERVER_PORT/tcp \
+    --publish $SERVER_QUERY_PORT:$SERVER_QUERY_PORT/tcp \
+    --publish $SERVER_PORT:$SERVER_PORT/udp \
+    --publish $SERVER_QUERY_PORT:$SERVER_QUERY_PORT/udp \
     --interactive \
     --tty \
     --rm \

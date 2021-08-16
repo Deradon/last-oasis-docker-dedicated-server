@@ -58,7 +58,7 @@ case $CMD in
     ;;
   run)
     INFO="RUN"
-  docker_run "run"
+    docker_run "run"
     ;;
   help)
     show_help

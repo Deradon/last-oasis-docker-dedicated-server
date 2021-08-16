@@ -4,8 +4,9 @@ INSTALL_DIR="${INSTALL_DIR:-$(realpath ~/.steam)/last-oasis}"
 
 SERVER_BINARY_PATH="$INSTALL_DIR/Mist/Binaries/Linux/"
 SERVER_IDENTIFIER="${SERVER_IDENTIFIER:-MyLastOasisServer}"
-SERVER_PORT="${SERVER_PORT:-62001}"
 SERVER_OPTIONS="${SERVER_OPTIONS:--log -force_steamclient_link -messaging -NoLiveServer -EnableCheats -backendapiurloverride=backend.last-oasis.com}"
+SERVER_PORT="${SERVER_PORT:-62001}"
+SERVER_QUERY_PORT="${SERVER_QUERY_PORT:-27015}"
 SERVER_SLOTS="${SERVER_SLOTS:-10}"
 
 STEAM_APP_ID="${STEAM_APP_ID:-920720}"

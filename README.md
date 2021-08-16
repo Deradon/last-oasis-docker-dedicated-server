@@ -39,15 +39,14 @@ It should look close to:
 <details>
   <summary>Example config</summary>
 
-    ##############
-    ## Required ##
-    ##############
-
     # Get it from https://myrealm.lastoasis.gg/Settings ("Game server registration key")
     SERVER_CUSTOMER_KEY="XgZyB0HDYtv4JJ1tUUybXg"
 
     # Server name to use. Must be unique per server realm.
     SERVER_IDENTIFIER="Example Server"
+
+    # How many slots the server should offer. (Default: "10")
+    SERVER_SLOTS="25"
 
     # Eternal server ip to use.
     SERVER_IP_ADDRESS=233.252.0.98
@@ -55,30 +54,14 @@ It should look close to:
     # Server port to use. Must be unique per server realm and IP.
     SERVER_PORT="62001"
 
+    # Server query port to use. Must be unique per server realm and IP.
+    SERVER_QUERY_PORT="27015"
+
     # Get it from https://myrealm.lastoasis.gg/Settings ("Self hosted game servers registration keys")
     SERVER_PROVIDER_KEY="6fSIs5nTwnhfjcaVlZ5BmA"
 
     # Steam user name to login with.
     STEAM_USER="FancyAlice"
-
-    ##############
-    ## Optional ##
-    ##############
-
-    # Directory where to install Last Oasis. (Default: ".steam/last-oasis")
-    # INSTALL_DIR=$(realpath ~/.steam)/last-oasis
-
-    # Additional server options to use.
-    # SERVER_OPTIONS='-log -force_steamclient_link -messaging -NoLiveServer -EnableCheats -backendapiurloverride="backend.last-oasis.com"'
-
-    # How many slots the server should offer. (Default: "10")
-    SERVER_SLOTS="25"
-
-    # If you've compiled "stemcmd' from source or it is not included in your ${bold}PATH${normal}, you might need to set this to the full path of your "steamcmd" binary (or shell script).
-    # STEAM_CMD_BINARY="steamcmdd""
-
-    # Dedicated last oasis server steam appid for linux. (Default: "903950")
-    # STEAM_LINUX_APP_ID="903950"
 </details>
 
 #### Install
@@ -125,15 +108,14 @@ It should look close to:
 <details>
   <summary>Example config</summary>
 
-    ##############
-    ## Required ##
-    ##############
-
     # Get it from https://myrealm.lastoasis.gg/Settings ("Game server registration key")
     SERVER_CUSTOMER_KEY="XgZyB0HDYtv4JJ1tUUybXg"
 
     # Server name to use. Must be unique per server realm.
     SERVER_IDENTIFIER="Example Server"
+
+    # How many slots the server should offer. (Default: "10")
+    SERVER_SLOTS="25"
 
     # Eternal server ip to use.
     SERVER_IP_ADDRESS=233.252.0.98
@@ -141,30 +123,14 @@ It should look close to:
     # Server port to use. Must be unique per server realm and IP.
     SERVER_PORT="62001"
 
+    # Server query port to use. Must be unique per server realm and IP.
+    SERVER_QUERY_PORT="27015"
+
     # Get it from https://myrealm.lastoasis.gg/Settings ("Self hosted game servers registration keys")
     SERVER_PROVIDER_KEY="6fSIs5nTwnhfjcaVlZ5BmA"
 
     # Steam user name to login with.
     STEAM_USER="FancyAlice"
-
-    ##############
-    ## Optional ##
-    ##############
-
-    # Directory where to install Last Oasis. (Default: ".steam/last-oasis")
-    # INSTALL_DIR=$(realpath ~/.steam)/last-oasis
-
-    # Additional server options to use.
-    # SERVER_OPTIONS='-log -force_steamclient_link -messaging -NoLiveServer -EnableCheats -backendapiurloverride="backend.last-oasis.com"'
-
-    # How many slots the server should offer. (Default: "10")
-    SERVER_SLOTS="25"
-
-    # If you've compiled "stemcmd' from source or it is not included in your ${bold}PATH${normal}, you might need to set this to the full path of your "steamcmd" binary (or shell script).
-    # STEAM_CMD_BINARY="steamcmdd""
-
-    # Dedicated last oasis server steam appid for linux. (Default: "903950")
-    # STEAM_LINUX_APP_ID="903950"
 </details>
 
 #### Install
@@ -247,30 +213,39 @@ It should look close to:
         ports:
           - "62001:62001"
           - "62001:62001/udp"
+          - "62101:62101"
+          - "62101:62101/udp"
         environment:
           <<: *environment-template
           SERVER_IDENTIFIER: server-01
           SERVER_PORT: 62001
+          SERVER_QUERY_PORT: 62101
 
       server-02:
         <<: *service-template
         ports:
           - "62002:62002"
           - "62002:62002/udp"
+          - "62102:62102"
+          - "62102:62102/udp"
         environment:
           <<: *environment-template
           SERVER_IDENTIFIER: server-02
           SERVER_PORT: 62002
+          SERVER_QUERY_PORT: 62102
 
       server-03:
         <<: *service-template
         ports:
           - "62003:62003"
           - "62003:62003/udp"
+          - "62103:62103"
+          - "62103:62103/udp"
         environment:
           <<: *environment-template
           SERVER_IDENTIFIER: server-03
           SERVER_PORT: 62003
+          SERVER_QUERY_PORT: 62103
 
     volumes:
       last-oasis-volume:

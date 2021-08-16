@@ -33,6 +33,7 @@ start_server(){
     -backendapiurloverride="backend.last-oasis.com" \
     -identifier=$SERVER_IDENTIFIER \
     -port=$SERVER_PORT \
+    -QueryPort=$SERVER_QUERY_PORT \
     -CustomerKey=$SERVER_CUSTOMER_KEY \
     -ProviderKey=$SERVER_PROVIDER_KEY \
     -slots=$SERVER_SLOTS \

@@ -18,6 +18,7 @@ ${bold}OPTIONS
   -i <IP>     External IP
   -n <name>   Server name / identifier
   -p <port>   Port to use
+  -q <port>   Query port to use
   -s <slots>  Server slots
   -u <user>   Steam username / login
 
@@ -57,6 +58,9 @@ ${bold}ENVIRONMENT VARIABLES: (@todo)
     ${underscore}SERVER_PORT${normal}             (overwritten by '-p' option) ${bold}[*required]${normal}
       Server port to use. Must be unique per server realm and IP.
 
+    ${underscore}SERVER_QUERY_PORT${normal}       (overwritten by '-q' option) ${bold}[*required]${normal}
+      Server steam query port to use. Must be unique per  and IP.
+
     ${underscore}SERVER_PROVIDER_KEY${normal}     ${bold}[*required]${normal}
       Get it from https://myrealm.lastoasis.gg/Settings ("Self hosted game servers registration keys")
 
@@ -84,8 +88,8 @@ ${bold}EXAMPLES
   # Run a server with given port and external IP
   last-oasis -d ~/foo/bar/baz install
 
-  # Run a server with given port and external IP
-  last-oasis -p 62001 -i 233.252.0.98 run
+  # Run a server with given ports and external IP
+  last-oasis -p 62001 -q 27016 -i 233.252.0.98 run
 
 ${bold}NOTE
   ${normal}Configuration of your realm and oasis must be done at: https://myrealm.lastoasis.gg/.

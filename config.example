@@ -32,6 +32,9 @@
 # Additional server options to use.
 # SERVER_OPTIONS='-log -force_steamclient_link -messaging -NoLiveServer -EnableCheats -backendapiurloverride="backend.last-oasis.com"'
 
+# Server query port to use. Must be unique per server realm and IP.
+# SERVER_QUERY_PORT="27015"
+
 # How many slots the server should offer. (Default: "10")
 # SERVER_SLOTS="10"
 
